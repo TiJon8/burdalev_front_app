@@ -1,8 +1,7 @@
 import './App.css';
 import { useEffect } from 'react';
 import Button from './Components/Button';
-
-const tg = window.Telegram.WebApp;
+import { useTelegram } from './hooks/useTelegram';
 
 window.onload = function() {
   const menu = document.getElementById('menu');
@@ -13,19 +12,18 @@ window.onload = function() {
 
 function App() {
 
+  const { tg, user, onClose , onToggleButton} = useTelegram(); 
+
   useEffect( () => {
     tg.ready();
   }, [] )
-
-  const onClose = () => {
-    tg.close();
-  }
 
   return (
     <div className="App">
       <div class="Main">
         <h1>Если не подписан</h1> 
-        <p>{tg.initDataUnsafe?.user?.username}</p>
+        <p>{user?.username}</p>
+        <button onClick={onToggleButton} ></button>
       </div>
       <Button event={onClose}/>
     </div>
