@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+            overflow-x: hidden;
+        }
+
+        .Main {
+            width: 100%;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 12px;
+            height: 60px;
+            width: 346px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #ffffff; /* Белый текст */
+            background-color: #007bff; /* Синий фон */
+            position: relative;
+            overflow: hidden; /* Эффект не выходит за пределы кнопки */
+            transform: translateY(-12%); /* Поднимаем кнопку чуть выше центра меню */
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 86px; /* Узкий отблеск */
+            height: 100%;
+            background: #94c8ffa1; /* Полупрозрачный белый */
+            filter: blur(16px); /* Размытие для мягкого свечения */
+            transform: skewX(-20deg);
+            transition: all 0.4s ease;
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -150%;
+            }
+            50% {
+                left: 150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 100px; /* Высота увеличена */
+            background-color: var(--tg-theme-bg-color); /* Фон меню совпадает с фоном сайта */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 -1px 0px 0 var(--menu-shadow-color);
+            transition: transform 0.3s ease-out;
+            transform: translateY(100%); /* Скроем меню при старте */
+        }
+
+        .bottom-menu.show {
+            transform: translateY(0); /* Появление меню */
+        }
+
+        /* Определение цветов для светлой и темной темы */
+        :root {
+            --menu-shadow-light: #d3d3d5;
+            --menu-shadow-dark: #252525;
+        }
+
+        /* Для темной темы */
+        body[data-dark-mode="true"] .bottom-menu {
+            background-color: var(--tg-theme-bg-color); /* Убедимся, что цвет меню совпадает с фоном */
+            box-shadow: 0 -1px 0px 0 var(--menu-shadow-dark);
+        }
+
+        /* Для светлой темы */
+        body[data-dark-mode="false"] .bottom-menu {
+            background-color: var(--tg-theme-bg-color); /* Убедимся, что цвет меню совпадает с фоном */
+            box-shadow: 0 -1px 0px 0 var(--menu-shadow-light);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="Main">
+        <h1>Подписан на закрытый канал</h1> 
+    </div>
+
+    <div class="bottom-menu" id="menu">
+        <button class="btn" onclick="window.location.href='https://t.me/test_tg_video';">Приобрести подписку</button>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        // Определение темы Telegram и установка атрибута для смены теней и фона меню
+        document.body.setAttribute('data-dark-mode', tg.colorScheme === 'dark');
+
+        // Эффект появления меню снизу вверх
+        window.onload = function() {
+            const menu = document.getElementById('menu');
+            setTimeout(() => {
+                menu.classList.add('show');
+            }, 300); // Задержка для плавного появления
+        };
+
+        // Обновление темы при изменении цветовой схемы
+        tg.onEvent('themeChanged', function() {
+            document.body.setAttribute('data-dark-mode', tg.colorScheme === 'dark');
+        });
+    </script>
+</body>
+</html>
