@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <div class="Main">
         <h1>Если не подписан</h1> 
-        <span>{user?.username}</span>
+        <span>{tg.initData}</span>
         <button onClick={onToggleButton}>click</button>
       </div>
       <Button event={onClose}/>
