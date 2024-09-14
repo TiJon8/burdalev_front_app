@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Button from './Components/Button';
 import { useTelegram } from './hooks/useTelegram';
 
@@ -12,11 +12,11 @@ window.onload = function() {
 
 function App() {
 
-  const { onClose, onToggleButton, tg, user } = useTelegram(); 
+  const { onClose, onToggleButton, user } = useTelegram(); 
 
-  useEffect( () => {
-    tg.ready();
-  }, [] )
+  // useEffect(() => {
+  //   tg.ready();
+  // },[])
 
   return (
     <div className="App">
