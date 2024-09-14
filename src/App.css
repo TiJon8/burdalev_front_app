@@ -1,41 +1,3 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 * {
   margin: 0;
@@ -111,7 +73,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 -1px 0px 0 var(--menu-shadow-color);
+  box-shadow: 0 -1px 0px 0 var(--menu-shadow-light);
   transition: transform 0.3s ease-out;
   transform: translateY(100%); /* Скроем меню при старте */
 }
@@ -129,7 +91,7 @@ h1 {
 /* Для темной темы */
 body[data-dark-mode="true"] .bottom-menu {
   background-color: var(--tg-theme-bg-color); /* Убедимся, что цвет меню совпадает с фоном */
-  box-shadow: 0 -1px 0px 0 var(--menu-shadow-dark);
+  box-shadow: 0 -1px 0px 0 var(--menu-shadow-light);
 }
 
 /* Для светлой темы */
