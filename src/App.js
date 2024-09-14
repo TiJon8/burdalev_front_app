@@ -12,7 +12,7 @@ window.onload = function() {
 
 function App() {
 
-  const { onClose, onToggleButton, user } = useTelegram(); 
+  const { onClose, onToggleButton, tg } = useTelegram(); 
 
   // useEffect(() => {
   //   tg.ready();
