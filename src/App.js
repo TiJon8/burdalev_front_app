@@ -12,7 +12,7 @@ window.onload = function() {
 
 function App() {
 
-  const { onClose, onToggleButton, tg } = useTelegram(); 
+  const { onClose, onToggleButton, tg, user } = useTelegram(); 
 
   // useEffect(() => {
   //   tg.ready();
@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <div className="Main">
         <h1>Если не подписан</h1> 
-        <span>{tg.initDataUnsafe}</span>
+        <span>{user?.username}</span>
         <button onClick={onToggleButton}>click</button>
       </div>
       <Button event={onClose}/>
