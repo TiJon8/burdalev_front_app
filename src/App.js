@@ -13,7 +13,6 @@ window.onload = function() {
 function App() {
 
   const { onClose, onToggleButton, tg } = useTelegram(); 
-  console.log(tg.initData)
 
   // useEffect(() => {
   //   tg.ready();
@@ -23,7 +22,7 @@ function App() {
     <div className="App">
       <div class="Main">
         <h1>Если не подписан</h1> 
-        <span>{tg.initData}</span>
+        <span>{tg.initDataUnsafe}</span>
         <button onClick={onToggleButton}>click</button>
       </div>
       <Button event={onClose}/>
