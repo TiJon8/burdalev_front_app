@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <div class="Main">
+      <div className="Main">
         <h1>Если не подписан</h1> 
         <span>{tg.initDataUnsafe}</span>
         <button onClick={onToggleButton}>click</button>
