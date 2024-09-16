@@ -32,7 +32,7 @@ function App() {
   // },[])
   useEffect(() => {
     getUser();
-  }, [])
+  })
 
   return (
     <div className="App">
