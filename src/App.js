@@ -20,7 +20,7 @@ function App() {
 
   const getUser = async () => {
     try {
-      const res = await axios.post('http://127.0.0.1:8081/', {id: "683136369"}, {headers: {'Content-Type': 'application/json'}})
+      const res = await axios.post('http://192.168.0.12:8081/', {id: "683136369"}, {headers: {'Content-Type': 'application/json'}})
       setResponse(res.data)
     } catch (err) {
       console.log(err)
