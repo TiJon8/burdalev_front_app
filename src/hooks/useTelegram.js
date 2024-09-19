@@ -1,14 +1,18 @@
-const tg = window.Telegram.WebApp; 
- 
- export function useTelegram() {
+const tg = window.Telegram.WebApp;
+
+tg.MainButton.setText("Подписаться")
+
+tg.MainButton.onClick(() => {
+    tg.close();
+})
+
+export function useTelegram() {
     const onClose = () => {
         tg.close();
       }
 
-    const onToggleButton = () => {
-        if(tg.MainButton.isVisible) {
-            tg.MainButton.hide();
-        } else {
+    const onToggleButton = (member) => {
+        if(member === "guest" && !tg.MainButton.isVisible) {
             tg.MainButton.show();
         }
     }

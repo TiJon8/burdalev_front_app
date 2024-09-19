@@ -75,14 +75,14 @@ h1 {
   align-items: center;
   box-shadow: 0 -1px 0px 0 var(--menu-shadow-light);
   transition: transform 0.3s ease-out;
-  transform: translateY(100%); /* Скроем меню при старте */
+  /* transform: translateY(100%);  Скроем меню при старте */
 }
 
-.bottom-menu.show {
-  transform: translateY(0); /* Появление меню */
-}
+/* .bottom-menu.show {
+  transform: translateY(0); Появление меню 
+} 
 
-/* Определение цветов для светлой и темной темы */
+ Определение цветов для светлой и темной темы */
 :root {
   --menu-shadow-light: #d3d3d5;
   --menu-shadow-dark: #252525;
@@ -98,4 +98,9 @@ body[data-dark-mode="true"] .bottom-menu {
 body[data-dark-mode="false"] .bottom-menu {
   background-color: var(--tg-theme-bg-color); /* Убедимся, что цвет меню совпадает с фоном */
   box-shadow: 0 -1px 0px 0 var(--menu-shadow-light);
+}
+
+.member-bottom-menu {
+  display: flex;
+  justify-content: space-between;
 }

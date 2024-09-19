@@ -1,47 +1,48 @@
 import React from 'react';
 import './App.css';
-import Button from './Components/Button';
 import { useTelegram } from './hooks/useTelegram';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-window.onload = function() {
-  const menu = document.getElementById('menu');
-  setTimeout(() => {
-      menu.classList.add('show');
-  }, 300); // Задержка для плавного появления
-};
+import MemberButton from './Components/MemberButton';
+import Loader from './Components/Loader';
 
 function App() {
 
   const [ response, setResponse ] = useState(null)
+  const { onToggleButton, user } = useTelegram(); 
+  const [loading, setLoading] = useState(true);
 
-  const { onClose, onToggleButton, user } = useTelegram(); 
+  useEffect(() => {
+      const timer = setTimeout(() => {
+          setLoading(false);
+      }, 4000);
+
+      // Clear the timeout when the component unmounts
+      return () => clearTimeout(timer);
+  }, []);
+
+  const user_id = user?.id
+
+  useEffect(() => {
+    getUser();
+  }, [setResponse])
 
   const getUser = async () => {
     try {
-      const res = await axios.post('http://192.168.0.12:8081/', {id: user.id}, {headers: {'Content-Type': 'application/json'}})
+      const res = await axios.post('https://a2d6-77-37-227-80.ngrok-free.app/', {id: user_id.toString()}, {headers: {'Content-Type': 'application/json'}})
       setResponse(res.data)
     } catch (err) {
       console.log(err)
     }
   }
 
-  // useEffect(() => {
-  //   tg.ready();
-  // },[])
-  useEffect(() => {
-    getUser();
-  })
-
   return (
     <div className="App">
+      <Loader />
       <div className="Main">
         {response?.is_member === 'member' ? <h1>Если подписан</h1> : <h1>Если не подписан</h1>}
-        <span>{user?.username}</span>
-        <button onClick={onToggleButton}>click</button>
       </div>
-      <Button event={onClose}/>
+      {response?.is_member === "member" ? <MemberButton /> : onToggleButton(response?.is_member)}
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import React from "react"
 
-export default function Button({event}) {
+
+/* Кастомная кнопка (нигде не используется) */
+export default function Button({event, tg}) {
+    tg.MainButton.setText("Подписаться")
     return (
         <div className="bottom-menu" id="menu">
-            <button onClick={event} className="btn">Приобрести подписку</button>
+            <button onClick={event} className="btn">{tg.MainButton.text}</button>
         </div>
     )
 }
