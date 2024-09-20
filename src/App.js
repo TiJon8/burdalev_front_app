@@ -5,10 +5,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import MemberButton from './Components/MemberButton';
 import Loader from './Components/Loader';
+import BtnSection from './Components/btnSection';
 
 function App() {
 
   const [ response, setResponse ] = useState(null)
+  const [ state, setState ] = useState(null)
   const { onToggleButton, user } = useTelegram(); 
   const [loading, setLoading] = useState(true);
 
@@ -41,8 +43,9 @@ function App() {
       <Loader />
       <div className="Main">
         {response?.is_member === 'member' ? <h1>Если подписан</h1> : <h1>Если не подписан</h1>}
+        <BtnSection />
       </div>
-      {response?.is_member === "member" ? <MemberButton /> : onToggleButton(response?.is_member)}
+      {response?.is_member === "member" ? <MemberButton state={state} /> : onToggleButton(response?.is_member)}
     </div>
   );
 }
